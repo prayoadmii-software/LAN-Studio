@@ -19,9 +19,7 @@
 			"git.prayoadmii.lanstudio.LANStudio"
 		]
 	},
-	"mixins": [
-		"lanstudio.mixins.json"
-	],
+	"mixins": [],
 	"depends": {
 		"fabricloader": ">=0.19.5",
 		"minecraft": "~26.3",
