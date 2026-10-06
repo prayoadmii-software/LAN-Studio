@@ -3,7 +3,7 @@
 	"id": "lanstudio",
 	"version": "${version}",
 	"name": "LAN Studio",
-	"description": "Configure and share singleplayer worlds over LAN with per-world settings.",
+	"description": "A Simple Mod That Add More Options To Configure Your LAN World!",
 	"authors": [
 		"PrayoadMii"
 	],
