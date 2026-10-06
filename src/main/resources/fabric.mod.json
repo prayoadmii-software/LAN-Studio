@@ -8,10 +8,11 @@
 		"PrayoadMii"
 	],
 	"contact": {
-		"homepage": "https://github.com/prayoadmii-software/LAN-Studio",
-		"sources": "https://github.com/prayoadmii-software/LAN-Studio"
+		"homepage": "https://modrinth.com/mod/lan-studio",
+		"sources": "https://github.com/prayoadmii-software/LAN-Studio",
+		"issues": "https://github.com/prayoadmii-software/LAN-Studio/issues"
 	},
-	"license": "GPLv2",
+	"license": "GNU GPLv2",
 	"icon": "assets/icon.png",
 	"environment": "client",
 	"entrypoints": {
@@ -22,6 +23,14 @@
 	"mixins": [
 		"lanstudio.mixins.json"
 	],
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/lan-studio",
+				"modmenu.discord": "https://discord.prayoadmii.qzz.io/"
+			}
+		}
+	},
 	"depends": {
 		"fabricloader": ">=0.19.5",
 		"minecraft": "~26.3",
