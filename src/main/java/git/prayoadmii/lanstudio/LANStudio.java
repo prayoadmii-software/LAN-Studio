@@ -33,6 +33,7 @@ public class LANStudio implements ClientModInitializer {
 
 	public static void applyStoredSettings(final IntegratedServer server) {
 		LanWorldSettings settings = LanWorldSettings.get(server);
+		
 		applySettings(server, settings);
 	}
 

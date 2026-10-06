@@ -24,12 +24,15 @@ public abstract class MultilineTextFieldMixin {
 		}
 
 		StringBuilder filtered = new StringBuilder(input.length());
+		
 		for (int i = 0; i < input.length(); i++) {
 			char character = input.charAt(i);
+
 			if (character == '\u00a7' || StringUtil.isAllowedChatCharacter(character) || character == '\n') {
 				filtered.append(character);
 			}
 		}
+
 		return filtered.toString();
 	}
 }
