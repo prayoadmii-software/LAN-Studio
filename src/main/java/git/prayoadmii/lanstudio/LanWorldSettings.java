@@ -69,14 +69,14 @@ public final class LanWorldSettings {
 				|| signature[5] != 0x0a
 				|| signature[6] != 0x1a
 				|| signature[7] != 0x0a) {
-				throw new IOException("The selected file is not a PNG image");
+				throw new IOException("The Selected File Is Not A PNG Image!");
 			}
 		}
 
 		BufferedImage input = ImageIO.read(source.toFile());
 
 		if (input == null || input.getWidth() < 1 || input.getHeight() < 1) {
-			throw new IOException("The selected file is not a readable PNG image");
+			throw new IOException("The Selected File Is Not A Readable PNG Image!");
 		}
 
 		BufferedImage output = new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB);
@@ -96,7 +96,7 @@ public final class LanWorldSettings {
 
 		try {
 			if (!ImageIO.write(output, "png", temporary.toFile())) {
-				throw new IOException("No PNG image writer is available");
+				throw new IOException("No PNG Image Writer Is Available");
 			}
 
 			try {
@@ -122,7 +122,7 @@ public final class LanWorldSettings {
 		properties.setProperty("iconPath", settings.iconPath);
 
 		try (OutputStream output = Files.newOutputStream(file(server))) {
-			properties.store(output, "LAN Studio settings for this world");
+			properties.store(output, "LAN Studio Settings For This World");
 		}
 	}
 
@@ -145,7 +145,7 @@ public final class LanWorldSettings {
 			settings.motd = readString(properties, "motd", settings.motd);
 			settings.iconPath = readString(properties, "iconPath", settings.iconPath);
 		} catch (IOException | IllegalArgumentException exception) {
-			LANStudio.LOGGER.error("Could not load LAN Studio settings from {}", file, exception);
+			LANStudio.LOGGER.error("Could Not Load LAN Studio Settings From {}", file, exception);
 		}
 
 		return settings;
@@ -167,7 +167,7 @@ public final class LanWorldSettings {
 			// Report invalid persisted values and keep the safe default.
 		}
 
-		LANStudio.LOGGER.warn("Ignoring invalid LAN Studio setting {}={}", key, value);
+		LANStudio.LOGGER.warn("Ignoring Invalid LAN Studio Setting {}={}", key, value);
 
 		return fallback;
 	}
@@ -187,7 +187,7 @@ public final class LanWorldSettings {
 			return Boolean.parseBoolean(value);
 		}
 
-		LANStudio.LOGGER.warn("Ignoring invalid LAN Studio setting {}={}", key, value);
+		LANStudio.LOGGER.warn("Ignoring Invalid LAN Studio Setting {}={}", key, value);
 
 		return fallback;
 	}

@@ -24,7 +24,7 @@ public class LANStudio implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LOGGER.info("LAN Studio client initialized");
+		LOGGER.info("LAN Studio Client Initialized!");
 	}
 
 	public static @NonNull Identifier id(final @NonNull String path) {
@@ -53,7 +53,7 @@ public class LANStudio implements ClientModInitializer {
 			
 			((MinecraftServerAccessor)server).lanstudio$setStatusIcon(favicon);
 		} catch (IOException | IllegalArgumentException exception) {
-			LOGGER.error("Could not apply the configured LAN server icon for world {}", server.getWorldData().getLevelName(), exception);
+			LOGGER.error("Could Not Apply The Configured LAN Server Icon For World {}", server.getWorldData().getLevelName(), exception);
 
 			((MinecraftServerAccessor)server).lanstudio$setStatusIcon(ORIGINAL_ICONS.get(server).orElse(null));
 		}
@@ -74,13 +74,13 @@ public class LANStudio implements ClientModInitializer {
 			|| bytes[5] != 0x0a
 			|| bytes[6] != 0x1a
 			|| bytes[7] != 0x0a) {
-			throw new IllegalArgumentException("Icon must be a PNG file no larger than 64 KiB");
+			throw new IllegalArgumentException("Icon Must Be A PNG File No Larger Than 64 KiB");
 		}
 
 		var image = ImageIO.read(path.toFile());
 
 		if (image == null || image.getWidth() != 64 || image.getHeight() != 64) {
-			throw new IllegalArgumentException("Icon must be a readable 64 x 64 PNG image");
+			throw new IllegalArgumentException("Icon Must Be A Readable 64 x 64 PNG Image!");
 		}
 
 		return new ServerStatus.Favicon(bytes);

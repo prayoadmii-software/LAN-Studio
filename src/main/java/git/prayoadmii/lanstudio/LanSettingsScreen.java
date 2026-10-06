@@ -73,7 +73,7 @@ public final class LanSettingsScreen extends Screen {
 		int halfWidth = (this.contentWidth - gap) / 2;
 		int secondX = left + halfWidth + gap;
 
-		this.addLabel("Message of the day (up to 2 lines)", left, top);
+		this.addLabel("MOTD", left, top);
 
 		this.motdField = this.addRenderableWidget(
 			MultiLineEditBox.builder()
@@ -87,19 +87,19 @@ public final class LanSettingsScreen extends Screen {
 		this.motdField.setValue(this.settings.motd);
 		this.motdField.setValueListener(value -> this.settings.motd = java.util.Objects.requireNonNull(value));
 
-		this.addLabel("Player limit (1 or more)", left, top + this.scaled(74));
+		this.addLabel("Player Limit (1 Or More)", left, top + this.scaled(74));
 
 		this.playerLimitField = this.addField(
 			left, top + this.scaled(86), java.util.Objects.requireNonNull(Integer.toString(this.settings.maxPlayers)), 10, fieldHeight
 		);
 
-		this.addLabel("LAN port (1-65535)", left, top + this.scaled(112));
+		this.addLabel("LAN Port (1-65535)", left, top + this.scaled(112));
 
 		this.portField = this.addField(
 			left, top + this.scaled(124), java.util.Objects.requireNonNull(Integer.toString(this.settings.port)), 5, fieldHeight
 		);
 
-		this.addLabel("Server icon (any PNG; copied and resized to 64 x 64)", left, top + this.scaled(153));
+		this.addLabel("Server Icon", left, top + this.scaled(153));
 		this.previewSize = this.scaled(56);
 
 		int iconGap = this.scaled(8);
@@ -148,7 +148,7 @@ public final class LanSettingsScreen extends Screen {
 		int backY = top + this.scaled(this.narrow ? 328 : 286);
 
 		this.addRenderableWidget(
-			Button.builder(Component.literal("Save settings"), button -> this.saveAndApply())
+			Button.builder(Component.literal("Save Settings"), button -> this.saveAndApply())
 				.bounds(left, saveY, this.narrow ? this.contentWidth : halfWidth, fieldHeight)
 				.build()
 		);
@@ -192,15 +192,15 @@ public final class LanSettingsScreen extends Screen {
 	}
 
 	private @NonNull Component onlineModeLabel() {
-		return Component.literal("Online mode: " + (this.settings.onlineMode ? "On" : "Off"));
+		return Component.literal("Online Mode: " + (this.settings.onlineMode ? "On" : "Off"));
 	}
 
 	private @NonNull Component commandsLabel() {
-		return Component.literal("Commands: " + (this.settings.allowCommands ? "Allowed" : "Disabled"));
+		return Component.literal("Commands: " + (this.settings.allowCommands ? "Enabled" : "Disabled"));
 	}
 
 	private @NonNull Component lanButtonLabel() {
-		return Component.literal(this.server.isPublished() ? "Stop LAN" : "Open to LAN");
+		return Component.literal(this.server.isPublished() ? "Stop LAN" : "Open To LAN");
 	}
 
 	private void chooseIcon() {
@@ -221,11 +221,11 @@ public final class LanSettingsScreen extends Screen {
 			LANStudio.applySettings(this.server, this.settings);
 
 			this.refreshIconPreview();
-			this.setStatus("Icon copied to this world and resized to 64 x 64.");
+			this.setStatus("Icon Set!");
 		} catch (IOException | IllegalArgumentException exception) {
-			LANStudio.LOGGER.error("Could not import LAN server icon {}", selected, exception);
+			LANStudio.LOGGER.error("Could Not Import LAN Server Icon {}", selected, exception);
 
-			this.setStatus(this.errorMessage(exception, "Could not import the selected PNG."));
+			this.setStatus(this.errorMessage(exception, "Could Not Import The Selected PNG!"));
 		}
 	}
 
@@ -238,11 +238,11 @@ public final class LanSettingsScreen extends Screen {
 			Files.deleteIfExists(worldIcon);
 
 			this.refreshIconPreview();
-			this.setStatus("Custom icon cleared.");
+			this.setStatus("Custom Icon Cleared!");
 		} catch (IOException exception) {
-			LANStudio.LOGGER.error("Could not clear LAN server icon for world {}", this.server.getWorldData().getLevelName(), exception);
+			LANStudio.LOGGER.error("Could Not Clear LAN Server Icon For World {}", this.server.getWorldData().getLevelName(), exception);
 
-			this.setStatus(this.errorMessage(exception, "Could not clear the custom icon."));
+			this.setStatus(this.errorMessage(exception, "Could Not Clear The Custom Icon!"));
 		}
 	}
 
@@ -265,12 +265,12 @@ public final class LanSettingsScreen extends Screen {
 
 			this.minecraft.getTextureManager().register(
 				ICON_PREVIEW_TEXTURE,
-				new DynamicTexture(() -> "LAN Studio icon preview", image)
+				new DynamicTexture(() -> "LAN Studio Icon Preview", image)
 			);
 
 			this.iconPreviewLoaded = true;
 		} catch (IOException exception) {
-			LANStudio.LOGGER.error("Could not load LAN Studio icon preview from {}", iconPath, exception);
+			LANStudio.LOGGER.error("Could Not Load LAN Studio Icon Preview From {}", iconPath, exception);
 
 			this.iconPreviewLoaded = false;
 
@@ -309,10 +309,10 @@ public final class LanSettingsScreen extends Screen {
 			int port = Integer.parseInt(this.portField.getValue());
 
 			if (maxPlayers < 1) {
-				throw new IllegalArgumentException("Player limit must be at least 1");
+				throw new IllegalArgumentException("Player Limit Must Be At Least 1");
 			}
 			if (port < 1 || port > 65535) {
-				throw new IllegalArgumentException("Port must be between 1 and 65535");
+				throw new IllegalArgumentException("Port Must Be Between 1 And 65535");
 			}
 
 			this.settings.maxPlayers = maxPlayers;
@@ -322,14 +322,14 @@ public final class LanSettingsScreen extends Screen {
 			LanWorldSettings.save(this.server, this.settings);
 			LANStudio.applySettings(this.server, this.settings);
 
-			this.setStatus("Settings saved and applied.");
+			this.setStatus("Settings Saved And Applied!");
 			this.lanButton.setMessage(this.lanButtonLabel());
 
 			return true;
 		} catch (IOException | IllegalArgumentException exception) {
-			LANStudio.LOGGER.error("Could not save or apply LAN settings", exception);
+			LANStudio.LOGGER.error("Could Not Save Or Apply LAN Settings!", exception);
 
-			this.setStatus(this.errorMessage(exception, "Could not save settings; see the log."));
+			this.setStatus(this.errorMessage(exception, "Could Not Save Settings! See The Log!"));
 
 			return false;
 		}
@@ -342,14 +342,14 @@ public final class LanSettingsScreen extends Screen {
 
 		if (this.server.isPublished()) {
 			if (this.server.unpublishServer()) {
-				this.setStatus("LAN sharing stopped.");
+				this.setStatus("LAN Sharing Stopped!");
 			} else {
-				this.setStatus("Could not stop LAN sharing.");
+				this.setStatus("Could Not Stop LAN Sharing!");
 			}
 		} else if (this.server.publishServer(MinecraftServer.MultiplayerScope.LAN, this.settings.allowCommands, this.settings.port)) {
-			this.setStatus("LAN sharing started on port " + this.settings.port + ".");
+			this.setStatus("LAN Sharing Started On Port " + this.settings.port + "!");
 		} else {
-			this.setStatus("Could not open LAN sharing on port " + this.settings.port + ".");
+			this.setStatus("Could Not Open LAN Sharing On Port " + this.settings.port + "!");
 		}
 
 		this.lanButton.setMessage(this.lanButtonLabel());
