@@ -3,23 +3,25 @@
 	"id": "lanstudio",
 	"version": "${version}",
 	"name": "LAN Studio",
-	"description": "A Simple Mod That Let You Configure Your LAN World More!",
+	"description": "Configure and share singleplayer worlds over LAN with per-world settings.",
 	"authors": [
 		"PrayoadMii"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/prayoadmii-software/LAN-Studio",
+		"sources": "https://github.com/prayoadmii-software/LAN-Studio"
 	},
 	"license": "GPLv2",
 	"icon": "assets/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
-		"main": [
+		"client": [
 			"git.prayoadmii.lanstudio.LANStudio"
 		]
 	},
-	"mixins": [],
+	"mixins": [
+		"lanstudio.mixins.json"
+	],
 	"depends": {
 		"fabricloader": ">=0.19.5",
 		"minecraft": "~26.3",

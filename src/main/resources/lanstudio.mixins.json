@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "git.prayoadmii.lanstudio.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"IntegratedServerMixin",
+		"LANStudioPauseScreenMixin",
+		"MinecraftServerAccessor",
+		"MultiLineEditBoxMixin",
+		"MultilineTextFieldMixin",
+		"ScreenAccessor"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
